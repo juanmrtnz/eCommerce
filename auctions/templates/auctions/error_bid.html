@@ -1,0 +1,14 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}    
+
+    <div id="page-title">
+        Could not be placed
+    </div>
+
+    <p>The bid you are trying to place must be greater than the current price of the item.</p>
+
+    <p><a href="{% url 'item' item_id %}">Go back to the listing</a></p>
+
+
+{% endblock %}

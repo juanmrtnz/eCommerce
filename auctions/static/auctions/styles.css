@@ -1,0 +1,530 @@
+/* Page size settings */
+
+@media (max-width: 999px) {
+    #block-body {
+        padding-left: 2%;
+    }
+    #navbar-top, #navbar-bottom {
+        padding-left: 2%;
+    }
+    #navbar-rightSide {
+        padding-right: 0%;
+    }
+}
+
+@media (min-width: 1000px) {
+    #block-body {
+        padding-left: 12%;
+    }
+    #navbar-top, #navbar-bottom {
+        padding-left: 10%;
+    }
+    #navbar-rightSide {
+        padding-right: 10%;
+    }
+}
+
+@media (min-width: 1200px) {
+    #block-body {
+        padding-left: 18%;
+    }
+    #navbar-top, #navbar-bottom {
+        padding-left: 16%;
+    }
+    #navbar-rightSide {
+        padding-right: 15%;
+    }
+}
+
+/* Content common to all pages */
+
+body {
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+textarea {
+    font-family: inherit;
+}
+
+input, select {
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    color: white;
+    background-color: rgb(74, 147, 255);
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+/* Links */
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline; 
+}
+
+#navbar-bottom a, .itemList a {
+    color: black;
+}
+
+#navbar-bottom a, .itemList-photoLink:hover {
+    text-decoration: none;
+}
+
+/* Navigation bar */
+
+#navbar-top {
+    position: relative;
+    min-width: 900px;
+    padding-top: 13px;
+    height: 48px;
+    background-color: #79dd60;
+}
+
+#navbar-header {
+    background-image: url(favicon_auctions.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 40px;
+    width: 210px;
+    margin-left: 10px;
+    font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    text-shadow: -5px 5px 5px grey;
+}
+
+#navbar-rightSide {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin-top: 10px;
+    width: 130px;
+    font-size: 14px;
+}
+
+#navbar-profile-signed {
+    margin-bottom: 6px;
+    padding-left: 25px;
+    background-image: url(profile_icon.png);
+    background-repeat: no-repeat;
+    background-size: 18px;
+    font-style: italic;
+    font-size: 18px;
+}
+
+.navbar-profile-notSigned { 
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.navbar-rightSide-actions {
+    display: flex;
+}
+
+#logout {
+    margin-left: 27px;
+}
+
+#login {
+    margin-right: 20px;
+}
+
+#navbar-bottom {
+    display: flex;
+    position: relative;
+    min-width: 900px;
+    height: 35px;
+    font-weight: bold;
+    background-color: #31ca2c;
+}
+
+.navbar-link {
+    width: 145px;
+    padding-top: 6px;
+    border: 3px solid #31ca2c;
+    text-align: center;
+}
+
+.navbar-link:hover {
+    border: 3px solid rgb(3, 102, 3);
+    box-shadow: 0px 5px 5px grey;
+}
+
+.navbar-link:active {
+    padding-top: 8px;
+}
+
+/* Page content */
+
+#block-body {
+    max-width: 900px;
+    padding-top: 30px;
+}
+
+#page-title {
+    height: fit-content;
+    margin-bottom: 30px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/* Items in listings page */
+
+.itemList {
+    display: flex;
+    margin-bottom: 30px;
+    overflow-wrap: break-word;
+}
+
+.itemList-photo {
+    position: relative;
+}
+
+.itemList-image {
+    max-width:200px;
+    width: auto;
+    max-height:200px;
+    height: auto;
+}
+
+.itemList-photoLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 200px;
+    min-width: 200px;
+    border: 2px solid black;
+}
+
+.itemList-info {
+    width: 600px;
+    min-width: 300px;;
+    padding-left: 30px;
+}
+
+.itemList-title {
+    padding-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.itemList-description {
+    padding-bottom: 10px;
+}
+
+.itemList-price {
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* Items in item page */
+
+#itemPage-body {
+    display: flex;
+    align-items: center;
+    min-width: 850px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgb(163, 163, 163);
+}
+
+#itemPage-imageBox, #itemPage-noImageBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 330px;
+    max-height: 330px;
+    min-width: 330px;
+    max-width: 330px;
+}
+
+#itemPage-noImageBox {
+    border: 1px solid black;
+}
+
+#itemPage-image {
+    max-width: 330px;
+    width: auto;
+    max-height: 330px;
+    height: auto;
+}
+
+#itemPage-bodyInfo {
+    display: flex;
+    flex-direction: column;
+    min-width: 500px;
+    margin-left: 20px;
+}
+
+#itemPage-bodyInfo > * {
+    display: flex;
+    padding-left: 10px;
+    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+#itemPage-title_status_watchlist {
+    position: relative;
+    padding-left: 0px;
+    border-bottom: 1px solid rgb(163, 163, 163);
+}
+
+#itemPage-title {
+    min-height: 40px;
+    height: fit-content;
+    max-width: 330px;
+    font-size: 23px;
+    font-weight: bold;
+    overflow-wrap: break-word;
+}
+
+#itemPage-statusActive, #itemPage-statusClosed {
+    margin-top: 6px;
+    padding-left: 30px;
+    font-size: 14px;
+    font-weight: lighter;
+}
+
+#itemPage-statusClosed strong {
+    color: red;
+    margin-left: 5px;
+}
+
+#itemPage-statusActive strong {
+    color: rgb(50, 193, 50);
+    margin-left: 5px;
+}
+
+#itemPage-watchlistButton {
+    position: absolute;
+    bottom: 15px;
+    right: 0px;
+    padding-bottom: 3px;
+    font-size: 13px;
+}
+
+#itemPage-description {
+    height: 130px;
+    padding-top: 10px;
+    white-space: pre-line;
+}
+
+#itemPage-category_author {
+    border-top: 1px solid rgb(163, 163, 163);
+    border-bottom: 1px solid rgb(163, 163, 163);
+    align-items: center;
+    height: 50px;
+    line-height: 23px;
+}
+
+#itemPage-category {
+    width: 200px;
+}
+
+#itemPage-price_bidForm_closeListingForm {
+    align-items: center;
+    padding-top: 10px;
+    height: 80px;
+}
+
+#itemPage-price {
+    padding-top: 30px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#itemPage-bidForm {
+    flex-direction: column;
+    margin-left: 30px;
+    padding-left: 30px;
+    font-size: 15px;
+}
+
+#id_amount {
+    height: 28px;
+    width: 115px;
+    margin-top: 10px;
+    padding: 5px;
+    padding-left: 10px;
+    font-size: 18px;
+}
+
+#itemPage-bidButton {
+    padding: 5px;
+    margin-left: 10px;
+}
+
+#itemPage-itemSold {
+    font-size: 13px;
+    font-style: italic;
+}
+
+
+#itemPage-closeListingButton {
+    margin-top: 27px;
+    margin-left: 50px;
+    padding: 5px;
+    font-size: 16px;
+    background-color: rgb(255, 40, 40);
+}
+
+#itemPage-closeListingMessage {
+    width: 115px;
+    margin-top: 25px;
+    margin-left: 35px;
+    font-size: 12px;
+    font-style: italic;
+}
+
+#itemPage-itemSoldMessage {
+    margin-top: 25px;
+    margin-left: 50px;
+    font-size: 14px;
+    font-style: italic; 
+}
+
+#itemPage-winnerMessage {
+    margin-top: 10px;
+    color: #31ca2c;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#itemPage-commentsTitle {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#itemPage-commentButton {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+#itemPage-comments {
+    margin-bottom: 50px;
+}
+
+.itemPage-comment {
+    margin-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgb(163, 163, 163);
+}
+
+.itemPage-comment-username_timestamp {
+    display: flex;
+}
+
+.itemPage-commentUsername {
+    margin-bottom: 10px;
+    margin-right: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic; 
+}
+
+.itemPage-commentTimestamp {
+    margin-top: 2px;
+    font-size: 12px;
+
+}
+
+.itemPage-commentText {
+    padding-left: 20px;
+    overflow-wrap: break-word;
+    white-space: pre-line;
+}
+
+#itemPage-noCommentsMessage {
+    font-style: italic;
+}
+
+/* Forms */
+
+.log-form, #newListing-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.logForm-textbox, #newListing-form input, #id_category {
+    margin-bottom: 20px;
+    padding-left: 10px;
+    font-size: 16px;
+    border: 1px solid grey;
+}
+
+.logForm-textbox {
+    height: 28px;
+    width: 500px;
+}
+
+#logForm-errorMessage {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.logForm-button {
+    height: 28px;
+    width: 80px;
+    margin-left: 210px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    font-size: 16px;
+}
+
+#newListing-form > *{
+    height: 28px;
+    width: 700px;
+}
+
+#newListing-form label {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+#id_description {
+    height: 200px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    font-size: 16px;
+    resize: none;
+}
+
+#id_category {
+    height: 30px;
+    width: 113px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+#id_price {
+    height: 25px;
+    width: 100px;
+}
+
+#newListing-button {
+    height: 35px;
+    width: 125px;
+    margin-top: 15px;
+    margin-left: 287px;
+    padding-right: 11px;
+    text-align: center;
+}
+
+/* Categories */
+
+.category {
+    padding-bottom: 15px;
+    font-size: 20px;
+}

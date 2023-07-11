@@ -1,0 +1,11 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    <div id="page-title">
+        Your bid was successfully placed
+    </div>
+
+    <a href="{% url 'item' item_id %}">Go back to the listing</a>
+
+{% endblock %}

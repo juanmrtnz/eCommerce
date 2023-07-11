@@ -1,0 +1,14 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}    
+
+    <div id="page-title">
+        Could not be posted
+    </div>
+
+    <p>The comment you are trying to post cannot be blank.</p>
+
+    <p><a href="{% url 'item' item_id %}">Go back to the listing</a></p>
+
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    <div id="page-title">
+        Error
+    </div>
+
+    <div>
+        It appears the text box for the description of the listing you were trying to create (or the comment you were trying to post)
+        is counting new lines as two characters (instead of one, as it should be doing), so its maximum length (280 characters) is exceeded.
+        You can try doing it in another browser or simply removing some new lines (created when pressing the enter key).
+    </div>
+
+{% endblock %}

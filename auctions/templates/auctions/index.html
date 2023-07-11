@@ -1,0 +1,15 @@
+{% extends "auctions/layout.html" %}
+
+{% block body_title %}
+    Active Listings
+{% endblock %}
+
+{% block body_empty %}
+
+    {% if user.is_authenticated %}
+        No listings... yet. <a href="{% url 'create' %}">Create one here</a>!
+    {% else %}
+        No listings... yet. <a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">register</a> to create one!
+    {% endif %}
+
+{% endblock %}

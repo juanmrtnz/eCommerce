@@ -1,0 +1,147 @@
+{% extends "auctions/layout.html" %}
+
+
+{% block body %}
+
+    <div id="itemPage-body">
+
+        <div id="itemPage-imageBox">
+            {% if item.photo %}
+                <img id="itemPage-image" src="{{ item.photo }}" alt="No image">
+            {% else %}
+                <div id="itemPage-noImageBox">
+                    No image
+                </div>
+            {% endif %}
+        </div>
+
+        <div id="itemPage-bodyInfo">
+
+            <div id="itemPage-title_status_watchlist">
+                <div id="itemPage-title">
+                    {{ item.title }}
+                </div>
+                
+                {% if item.active == True %}
+                    <div id="itemPage-statusActive">
+                        <i>Status:</i> <strong> Active</strong>
+                    </div>
+                {% else %}
+                    <div id="itemPage-statusClosed">
+                        <i>Status:</i> <strong> Closed</strong>
+                    </div>
+                {% endif %}
+
+                {% if request.user.is_authenticated %}
+                    {% if item not in request.user.watchlist.all %}
+                        <form action="{% url 'watchlist_add' item.id %}" method="post">
+                            {% csrf_token %}
+                            <input id="itemPage-watchlistButton" value ="❤️ Add to watchlist" type="submit">
+                        </form>
+                    {% else %}
+                        <form action="{% url 'watchlist_remove' item.id %}" method="post">
+                            {% csrf_token %}
+                            <input id="itemPage-watchlistButton" value ="💔 Remove from watchlist" type="submit">
+                        </form>
+                    {% endif %}
+                {% endif %}
+        
+            </div>
+
+            <div id="itemPage-description">
+                {{ item.description }}
+            </div>
+
+            <div id="itemPage-category_author">
+                <div id="itemPage-category">
+                    <i>Category:</i> <strong>{{ item.category }}</strong>
+                </div>
+                <div id="itemPage-author">
+                    <i>Uploaded by:</i> <strong>{{ item.user.username }}</strong>
+                </div>
+            </div>
+        
+            <div id="itemPage-price_bidForm_closeListingForm">  
+                {% if item.active == True %}
+                    <div id="itemPage-price">
+                        ${{ bid.amount|floatformat:2 }}
+                    </div>
+
+                    {% if request.user.username == item.user.username %}
+                        <form action="{% url 'close_listing' item.id %}" method="post">
+                            {% csrf_token %}
+                            <input id="itemPage-closeListingButton" value="Close this listing" type="submit">
+                        </form>
+                        <div id="itemPage-closeListingMessage">
+                            By closing this listing, the item will be sold at the current price<br>to the last bidder
+                        </div>
+                    {% elif request.user.is_authenticated %}
+                        <form id="itemPage-bidForm" action="{% url 'place_bid' item.id %}" method="post">
+                            <div>
+                                Make a better offer:
+                            </div>
+                            {% csrf_token %}
+                            {{ bid_form }}
+                            <input id="itemPage-bidButton" value="Place bid" type="submit">
+                        </form>
+                    {% endif %}
+
+                {% elif item.active == False %} 
+                    <div id="itemPage-price">
+                        ${{ bid.amount|floatformat:2 }}
+                    </div>
+                    <div id="itemPage-itemSoldMessage">
+                        This item has been sold.<br>No more bids can be placed.
+                    </div>
+                {% endif %}
+            </div>
+
+            {% if request.user.username == item.winner.username %}
+                {% if item.user.username != item.winner.username %}
+                    <div id="itemPage-winnerMessage">
+                        🎉 Congratulations, {{ item.winner.username }}! You won this auction 🥳
+                    </div>
+                {% endif %}
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <div id="itemPage-comments">
+
+        <div id="itemPage-commentsTitle">
+            Comments
+        </div>
+
+        {% if request.user.is_authenticated %}
+            <form id="itemPage-commentForm" action="{% url 'post_comment' item.id %}" method="post">
+                {% csrf_token %}
+                {{ comment_form }}
+                <div><input id="itemPage-commentButton" value="Post comment" type="submit"></div>
+            </form>
+        {% endif %}
+
+        {% for comment in comments reversed %}
+            <div class="itemPage-comment">
+                <div class="itemPage-comment-username_timestamp">
+                    <div class="itemPage-commentUsername">
+                        {{ comment.user.username }}
+                    </div>
+                    <div class="itemPage-commentTimestamp">
+                        {{ comment.timestamp|date:"j/n/Y"}}, at {{ comment.timestamp|date:"G:i:s" }}
+                    </div>
+                </div>
+                <div class="itemPage-commentText">
+                    {{ comment.text }}
+                </div>
+            </div>
+        {% empty %}
+            <div>
+                <i>This listing has no comments</i>
+            </div>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

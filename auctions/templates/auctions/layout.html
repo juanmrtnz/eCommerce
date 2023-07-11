@@ -1,0 +1,102 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}eCommerce{% endblock %}</title>
+        <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon_auctions.png' %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="navbar-top">
+
+            <div id="navbar-header">
+                eCommerce
+            </div>
+
+            <div id="navbar-rightSide">
+                {% if request.user.is_authenticated %}
+                    <div id="navbar-profile-signed">
+                        {{ user.username }}
+                    </div>
+                    <div class="navbar-rightSide-actions">
+                        <a id="logout" href="{% url 'logout' %}">Log out</a>
+                    </div>
+                {% else %}
+                    <div id="navbar-profile">
+                        <div class="navbar-profile-notSigned">
+                            Not signed in
+                        </div>
+                    </div>
+                    <div class="navbar-rightSide-actions">
+                        <a id="login" href="{% url 'login' %}">Log in</a>
+                        <a href="{% url 'register' %}">Register</a>
+                    </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+        <div id="navbar-bottom">
+
+            <a id="active-listings" class="navbar-link" href="{% url 'index' %}">Active listings</a>
+            <a id="categories" class="navbar-link" href="{% url 'categories' %}">Categories</a>
+
+            {% if request.user.is_authenticated %}
+                <a id="create-listing" class="navbar-link" href="{% url 'create' %}">Create listing</a>
+                <a id="watchlist" class="navbar-link" href="{% url 'watchlist' %}">Watchlist</a>
+            {% endif %}
+
+        </div>            
+
+        <div id="block-body">
+            {% block body %}
+                
+                <div id="page-title">
+                    {% block body_title %}
+                    {% endblock %}
+                </div>
+
+                {% for item in items reversed %}
+
+                    <div class="itemList">
+
+                        {% if item.photo %}
+                            <a class="itemList-photoLink" href="{% url 'item' item.id %}">
+                                <img class="itemList-image" src="{{ item.photo }}" height="200" alt="No image">
+                            </a>
+                        {% else %}
+                            <a class="itemList-photoLink" href="{% url 'item' item.id %}">
+                                No image
+                            </a>
+                        {% endif %}
+            
+                        <div class="itemList-info">
+            
+                            <div class="itemList-title">
+                                <a href="{% url 'item' item.id %}">{{ item.title }}</a>
+                            </div>
+                            <div class="itemList-description">
+                                {{ item.description }}
+                            </div>
+                            <div class="itemList-price">
+                                ${{ item.price|floatformat:2 }}
+                            </div>
+            
+                        </div>
+            
+                    </div>
+                
+                {% empty %}
+                    
+                    {% block body_empty %}
+                    {% endblock %}
+
+                {% endfor %}
+
+            {% endblock %}
+        </div>
+
+    </body>
+</html>
